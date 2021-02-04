@@ -1,0 +1,34 @@
+.imgContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+li {
+    list-style-type: none;
+}
+
+li img {
+    height: 20rem;
+    width: 15rem;
+}
+
+#weather {
+    display: flex;
+    align-items: center;
+    justify-content: first baseline;
+    flex-direction: row;
+    margin-bottom: 3rem;
+}
+
+p,
+#weatherIcon {
+    display: inline;
+    padding-right: 1rem;
+}
+
+#weatherIcon {
+    width: 36px;
+    height: 36px;
+}
