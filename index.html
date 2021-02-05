@@ -9,19 +9,28 @@
     <body>
         <form id="weatherForm">
             <label for="weatherInput"> Choisissez votre ville</label>
-            <input id="weatherInput" type="text" placeholder="ex: Marseille" />
-            <button>Météo</button>
+            <div id="weatherContainer">
+                <input
+                    id="weatherInput"
+                    type="text"
+                    placeholder="ex: Marseille"
+                    autocomplete="off"
+                />
+                <div id="weatherContainer__autoComplete"></div>
+            </div>
         </form>
 
         <div class="weatherContainer"></div>
 
-        <form id="movieForm">
+        <!-- <form id="movieForm">
             <label for="movieInput"> Choisissez votre univers</label>
             <input id="movieInput" type="text" placeholder="ex: Marvel" />
             <button>Chercher</button>
         </form>
 
         <div class="imgContainer"></div>
+
+        <div class="albumsContainer"></div> -->
 
         <!-- SCRIPTS -->
         <!-- cdn polyfill pour Algolia -->
