@@ -1,13 +1,15 @@
-const weatherForm = document.querySelector('#weatherForm');
+// const weatherForm = document.querySelector('#weatherForm');
 const movieForm = document.querySelector('#movieForm');
 
 // fonctions
 const seekMovies = async function (movie) {
     const url = `http://www.omdbapi.com/?s=${movie}&apikey=883541da`;
-    console.log(url);
-    const universe = await (await fetch(url)).json();
 
-    universe.Search.forEach(movie => {
+    // const universe = await (await fetch(url)).json();
+    const universe = await axios.get(url);
+    console.log(universe);
+
+    universe.data.Search.forEach(movie => {
         console.log(movie.Title, movie.Year);
         document.querySelector('.imgContainer').insertAdjacentHTML(
             'beforeend',
@@ -16,11 +18,16 @@ const seekMovies = async function (movie) {
             <img src="${movie.Poster}"/>
             <h4>${movie.Title}</h4>
             </li>
-        
         `
         );
     });
 };
+
+movieForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const movie = document.querySelector('#movieInput').value;
+    seekMovies(movie);
+});
 
 const fetchWeather = async function (town) {
     // url à laquelle on interpole la saisie utilisateur
@@ -58,16 +65,17 @@ const fetchWeather = async function (town) {
 
     weatherContainer.insertAdjacentHTML(
         'beforeend',
-        `   
+        `
             <div id="weather">
                 <p>Aujourd'hui à ${town}, il fait ${townTemp} °C et le temps est ${townSky}. </p>
                 <img src="${icon}" id="weatherIcon" />
             </div>
-            
 
         `
     );
 };
+
+(function () {})();
 
 fetchWeather('Marseille');
 seekMovies('Marvel');
@@ -78,10 +86,4 @@ weatherForm.addEventListener('submit', function (event) {
     event.preventDefault();
     const town = document.querySelector('#weatherInput').value;
     fetchWeather(town);
-});
-
-movieForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    const movie = document.querySelector('#movieInput').value;
-    seekMovies(movie);
 });
