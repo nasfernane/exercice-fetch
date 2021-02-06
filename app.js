@@ -4,10 +4,24 @@ const autoCompleteContainer = document.querySelector('#weatherContainer__autoCom
 
 // STATION METEO
 const fetchWeather = async function (town) {
+    // vide la valeur des précédentes recherches
     weatherInput.value = '';
 
+    const tempTown = town.split(' ');
+    let townArray = [];
+
+    // pour enlever les résultats arrondissements, on split l'auto-complétion, vérifie si l'élément et un nombre ou égal à Arrondissement
+    tempTown.forEach(element => {
+        if (!Number.isInteger(element.split('')[0] * 1) && element !== 'Arrondissement') {
+            townArray.push(element);
+        }
+    });
+
+    // on ré-assemble le tableau pour les noms de villes composés
+    finalTown = townArray.join(' ');
+
     // url à laquelle on interpole la saisie utilisateur
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${town}&appid=67173c519205d685b546a19f56219ebc&lang=fr`;
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${finalTown}&appid=67173c519205d685b546a19f56219ebc&lang=fr`;
 
     // requête météo
     const townWeather = await axios.get(url);
@@ -77,16 +91,20 @@ weatherForm.addEventListener('submit', function (event) {
 
 // AUTOCOMPLETE
 const autoComplete = async function (input) {
+    // stocke le retour de la requête axios dans une constante
     const res = await axios({
+        // méthode
         method: 'POST',
+        // url
         url: 'https://places-dsn.algolia.net/1/places/query',
-        data: JSON.stringify({ query: input, type: 'city', hitsPerPage: '3' }),
+        // donnée envoyées dans le body de la requête
+        data: { query: input, type: 'city', hitsPerPage: '3' },
     });
 
-    console.log(res.data.hits);
-
+    // on vide le conteneur autocomplete pour les recherches précédentes
     autoCompleteContainer.innerHTML = '';
 
+    // pour chaque résultat, on ajoute une auto-complétion sous l'input
     for (let i = 0; i < res.data.hits.length; i++) {
         autoCompleteContainer.insertAdjacentHTML(
             'beforeend',
@@ -96,10 +114,10 @@ const autoComplete = async function (input) {
         );
     }
 
+    // pour chaque auto-complétion créée, on ajoute un écouteur pour fetch la météo sur click
     document.querySelectorAll('#weatherContainer__autoComplete p').forEach(element => {
         element.addEventListener('click', function () {
             fetchWeather(element.innerHTML);
-            console.log(element.getAttribute('data-lat'));
             weatherInput.value = `${element.innerHTML}`;
             autoCompleteContainer.innerHTML = '';
         });
