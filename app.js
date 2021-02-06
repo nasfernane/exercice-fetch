@@ -114,34 +114,34 @@ weatherForm.addEventListener('keyup', function (event) {
 
 // AUTRES EXERCICES
 
-// 1ère phase : déclaration des variables
-const movieForm = document.querySelector('#movieForm');
+// // 1ère phase : déclaration des variables
+// const movieForm = document.querySelector('#movieForm');
 
-// 2ème phase : déclaration des fonctions
-const seekMovies = async function (movie) {
-    const url = `http://www.omdbapi.com/?s=${movie}&apikey=883541da`;
+// // 2ème phase : déclaration des fonctions
+// const seekMovies = async function (movie) {
+//     const url = `http://www.omdbapi.com/?s=${movie}&apikey=883541da`;
 
-    const movies = await axios.get(url);
+//     const movies = await axios.get(url);
 
-    movies.data.Search.forEach(element => {
-        document.querySelector('.imgContainer').insertAdjacentHTML(
-            'beforeend',
-            `
-            <li>
-            <img src="${element.Poster}"/>
-            <h4>${element.Title}</h4>
-            </li>
-        `
-        );
-    });
-};
+//     movies.data.Search.forEach(element => {
+//         document.querySelector('.imgContainer').insertAdjacentHTML(
+//             'beforeend',
+//             `
+//             <li>
+//             <img src="${element.Poster}"/>
+//             <h4>${element.Title}</h4>
+//             </li>
+//         `
+//         );
+//     });
+// };
 
-// 3ème phase : déclaration des écouteurs
-movieForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    const movie = document.querySelector('#movieInput').value;
-    seekMovies(movie);
-});
+// // 3ème phase : déclaration des écouteurs
+// movieForm.addEventListener('submit', function (event) {
+//     event.preventDefault();
+//     const movie = document.querySelector('#movieInput').value;
+//     seekMovies(movie);
+// });
 
 // JSON PLACEHOLDER
 // (async function () {
