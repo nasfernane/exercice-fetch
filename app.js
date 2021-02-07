@@ -124,7 +124,13 @@ const autoComplete = async function (input) {
     // pour chaque auto-complétion créée, on ajoute un écouteur pour fetch la météo sur click
     document.querySelectorAll('#weatherContainer__autoComplete p').forEach(element => {
         element.addEventListener('click', function () {
-            fetchWeather(element.innerHTML);
+            const town = element.innerHTML;
+            // transforme cette saisie en slug pour le fetch d'image background
+            const townSlug = town.split(' ').join('-').toLowerCase();
+            fetchWeather(town);
+            fetchPicture(townSlug);
+
+            // vide l'input utilisateur et le conteneur autocomplete
             weatherInput.value = `${element.innerHTML}`;
             autoCompleteContainer.innerHTML = '';
         });
