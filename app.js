@@ -66,27 +66,34 @@ const fetchWeather = async function (town) {
     }
 };
 
+// change l'image de background en fonction de la ville sur laquelle on effectue une recherche, avec l'APi teleport
 fetchPicture = async function (town) {
+    // requête sur la ville recherchée
     const picture = await axios.get(
         `https://api.teleport.org/api/urban_areas/slug:${town}/images/`
     );
 
+    // si on trouve un résultat, affiche l'image de la ville en background
     if (picture) {
         townPicture = picture.data.photos[0].image.web;
         document.querySelector(
             'body'
         ).style.backgroundImage = `url('${picture.data.photos[0].image.web}')`;
+        // sinon, remet la photo d'origine
     } else {
         document.querySelector('body').style.backgroundImage = `url('/img/town.jpg')`;
     }
 };
 
+// évènement sur le formulaire météo au submit, pour lancer le fetch météo et d'image de background
 weatherForm.addEventListener('submit', function (event) {
     event.preventDefault();
+    // récupère la saisie utilisateur pour le fetch météo
     const town = document.querySelector('#weatherInput').value;
-    const firstSlug = town.split(' ').join('-').toLowerCase();
+    // transforme cette saisie en slug pour le fetch d'image background
+    const townSlug = town.split(' ').join('-').toLowerCase();
     fetchWeather(town);
-    fetchPicture(firstSlug);
+    fetchPicture(townSlug);
 });
 
 // AUTOCOMPLETE
@@ -131,6 +138,7 @@ weatherForm.addEventListener('keyup', function (event) {
 });
 
 // AUTRES EXERCICES
+// A garder pour Claude
 
 // // 1ère phase : déclaration des variables
 // const movieForm = document.querySelector('#movieForm');
