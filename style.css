@@ -43,7 +43,7 @@ body::after {
 .section-forecast {
     width: 80%;
     margin: 0 auto;
-    opacity: 0.4;
+    opacity: 0.7;
     height: 30%;
     background: white;
     clip-path: polygon(100% 0%, 93% 50%, 100% 100%, 7% 100%, 0% 50%, 7% 0%);
@@ -141,8 +141,13 @@ p,
     outline: none;
 }
 
-#section-forecast__canvas {
-    width: 80%;
+.chartContainer {
     height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+canvas#myChart {
+    height: 100%;
+    width: 80%;
     margin-left: 10%;
 }

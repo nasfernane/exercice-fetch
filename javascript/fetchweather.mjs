@@ -18,9 +18,23 @@ const fetchWeather = async function (town) {
 
     // url à laquelle on interpole la saisie utilisateur
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${finalTown}&appid=67173c519205d685b546a19f56219ebc&lang=fr`;
+    const forecastUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${finalTown}
+    &appid=67173c519205d685b546a19f56219ebc&lang=fr&units=metric`;
 
     // requête météo
     const townWeather = await axios.get(url);
+    const forecastWeather = await axios.get(forecastUrl);
+    const temperatures = forecastWeather.data.list;
+    myChart.data.datasets[0] = [];
+
+    temperatures.forEach(element => {
+        myChart.data.datasets[0].push(element.main);
+    });
+    // températures
+
+    // for ()
+
+    console.log(forecastWeather);
 
     if (townWeather) {
         // variables

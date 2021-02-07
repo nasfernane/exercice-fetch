@@ -3,7 +3,7 @@ import fetchWeather from './fetchweather.mjs';
 // import fetchPicture from './fetchpicture.mjs';
 import autoComplete from './autocomplete.mjs';
 import mapbox from './mapbox.mjs';
-import myChart from './myChart.mjs';
+// import myChart from './myChart.mjs';
 
 //-- constantes --
 const weatherForm = document.querySelector('#weatherForm');

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "algoliasearch": "^4.8.4",
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "chart.js": "^2.9.4"
   }
 }
