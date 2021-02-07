@@ -25,16 +25,20 @@ const fetchWeather = async function (town) {
     const townWeather = await axios.get(url);
     const forecastWeather = await axios.get(forecastUrl);
     const temperatures = forecastWeather.data.list;
-    myChart.data.datasets[0] = [];
+    const newTemperatures = [];
+
+    newTemperatures.push(temperatures[0].main.temp);
 
     temperatures.forEach(element => {
-        myChart.data.datasets[0].push(element.main);
+        if (element.dt_txt.includes('12:00:00')) {
+            newTemperatures.push(element.main.temp);
+        }
     });
+
+    updateChart(newTemperatures);
+    myChart.update();
+
     // températures
-
-    // for ()
-
-    console.log(forecastWeather);
 
     if (townWeather) {
         // variables

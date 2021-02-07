@@ -7,7 +7,7 @@ var myChart = new Chart(ctx, {
         datasets: [
             {
                 label: 'Température',
-                data: [5, 32, 18, 15, 20, 5],
+                data: [32.15, 18, 15, 20, 5, 12, 40, 28],
                 backgroundColor: ['rgba(255, 99, 132, 0.2)'],
                 borderColor: ['rgba(255, 99, 132, 1)'],
                 borderWidth: 2,
@@ -20,6 +20,19 @@ var myChart = new Chart(ctx, {
                 {
                     ticks: {
                         beginAtZero: true,
+                        callback: function (value, index, values) {
+                            return value + '°C';
+                        },
+                    },
+                },
+            ],
+            xAxes: [
+                {
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value, index, values) {
+                            return 'Jour ' + value;
+                        },
                     },
                 },
             ],
@@ -28,3 +41,18 @@ var myChart = new Chart(ctx, {
         maintainAspectRatio: false,
     },
 });
+
+updateChart = function (newTemps) {
+    myChart.data = {
+        labels: ['0', '1', '2', '3', '4', '5'],
+        datasets: [
+            {
+                label: 'Température',
+                data: newTemps,
+                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                borderColor: ['rgba(255, 99, 132, 1)'],
+                borderWidth: 2,
+            },
+        ],
+    };
+};
