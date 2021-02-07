@@ -4,7 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js"></script>
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css" rel="stylesheet" />
         <link rel="stylesheet" href="style.css" />
+        <!-- mapbox -->
     </head>
     <body>
         <section class="section-weather">
@@ -22,6 +25,10 @@
             </form>
 
             <div class="weatherContainer"></div>
+        </section>
+
+        <section class="section-forecast">
+            <canvas id="myChart" width="400" height="400"></canvas>
         </section>
 
         <section class="section-map">
@@ -46,5 +53,6 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <!-- main script -->
         <script type="module" src="javascript/app.js"></script>
+        <script src="javascript/forecastchart.js"></script>
     </body>
 </html>

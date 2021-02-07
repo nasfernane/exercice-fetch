@@ -1,7 +1,9 @@
 //-- modules --
 import fetchWeather from './fetchweather.mjs';
-import fetchPicture from './fetchpicture.mjs';
+// import fetchPicture from './fetchpicture.mjs';
 import autoComplete from './autocomplete.mjs';
+import mapbox from './mapbox.mjs';
+import myChart from './myChart.mjs';
 
 //-- constantes --
 const weatherForm = document.querySelector('#weatherForm');
@@ -17,7 +19,7 @@ weatherForm.addEventListener('submit', function (event) {
     // transforme cette saisie en slug pour le fetch d'image background
     const townSlug = town.split(' ').join('-').toLowerCase();
     fetchWeather(town);
-    fetchPicture(townSlug);
+    // fetchPicture(townSlug);
 });
 
 // autocomplete à chaque keyup sur l'input météo
