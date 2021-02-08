@@ -37,9 +37,16 @@ body::after {
     height: 30%;
     background: #b4bdcb;
     clip-path: polygon(93% 0%, 100% 50%, 93% 100%, 0% 100%, 7% 50%, 0% 0%);
-    opacity: 0.8;
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
 }
 
+.section-weather__container {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
 .section-forecast {
     width: 80%;
     margin: 0 auto;
@@ -57,9 +64,14 @@ body::after {
     align-items: flex-start;
 }
 
+#weatherInput {
+    border-radius: 8px;
+    transform: translateY(-25%);
+}
+
 #weatherForm label,
 .weatherContainer p {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 #weatherContainer {
@@ -71,7 +83,7 @@ body::after {
     width: 25rem;
     padding: 0rem 1rem;
     margin: 0;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 #weatherContainer__autoComplete {
@@ -79,9 +91,11 @@ body::after {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    position: relative;
 }
 
 #weatherContainer__autoComplete p {
+    position: absolute;
     height: 2rem;
     width: calc(25rem + 2px);
     background: white;
@@ -89,6 +103,14 @@ body::after {
     display: inline;
     padding: 0rem 1rem;
     margin: 0;
+}
+
+#weatherContainer__autoComplete p:nth-child(1) {
+    top: 2rem;
+}
+
+#weatherContainer__autoComplete p:nth-child(3) {
+    top: 4rem;
 }
 
 .weatherContainer {
@@ -110,7 +132,6 @@ li img {
     align-items: center;
     justify-content: first baseline;
     flex-direction: row;
-    margin-bottom: 3rem;
 }
 
 p,
@@ -146,6 +167,7 @@ p,
     width: 80%;
     margin: 0 auto;
 }
+
 canvas#myChart {
     height: 100%;
     width: 80%;

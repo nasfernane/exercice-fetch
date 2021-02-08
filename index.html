@@ -11,20 +11,22 @@
     </head>
     <body>
         <section class="section-weather">
-            <form id="weatherForm">
-                <label for="weatherInput"> Choisissez votre ville</label>
-                <div id="weatherContainer">
-                    <input
-                        id="weatherInput"
-                        type="text"
-                        placeholder="ex: Marseille"
-                        autocomplete="off"
-                    />
-                    <div id="weatherContainer__autoComplete"></div>
-                </div>
-            </form>
+            <div class="section-weather__container">
+                <form id="weatherForm">
+                    <label for="weatherInput"> Choisissez votre ville</label>
+                    <div id="weatherContainer">
+                        <input
+                            id="weatherInput"
+                            type="text"
+                            placeholder="ex: Marseille"
+                            autocomplete="off"
+                        />
+                        <div id="weatherContainer__autoComplete"></div>
+                    </div>
+                </form>
 
-            <div class="weatherContainer"></div>
+                <div class="weatherContainer"></div>
+            </div>
         </section>
 
         <section class="section-forecast">

@@ -12,6 +12,13 @@ var myChart = new Chart(ctx, {
                 borderColor: ['rgba(255, 99, 132, 1)'],
                 borderWidth: 2,
             },
+            {
+                label: 'Température ressentie',
+                data: [],
+                backgroundColor: ['rgba(104, 109, 224, 0.2)'],
+                borderColor: ['rgba(104, 109, 224, 1)'],
+                borderWidth: 2,
+            },
         ],
     },
     options: {
@@ -42,7 +49,7 @@ var myChart = new Chart(ctx, {
     },
 });
 
-updateChart = function (newTemps) {
+updateChart = function (newTemps, feelTemps) {
     myChart.data = {
         labels: ['0', '1', '2', '3', '4', '5'],
         datasets: [
@@ -51,6 +58,13 @@ updateChart = function (newTemps) {
                 data: newTemps,
                 backgroundColor: ['rgba(255, 99, 132, 0.2)'],
                 borderColor: ['rgba(255, 99, 132, 1)'],
+                borderWidth: 2,
+            },
+            {
+                label: 'Température ressentie',
+                data: feelTemps,
+                backgroundColor: ['rgba(104, 109, 224, 0.2)'],
+                borderColor: ['rgba(104, 109, 224, 1)'],
                 borderWidth: 2,
             },
         ],

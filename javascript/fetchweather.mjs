@@ -26,16 +26,21 @@ const fetchWeather = async function (town) {
     const forecastWeather = await axios.get(forecastUrl);
     const temperatures = forecastWeather.data.list;
     const newTemperatures = [];
+    const feelTemperatures = [];
+
+    console.log(forecastWeather);
 
     newTemperatures.push(temperatures[0].main.temp);
+    feelTemperatures.push(temperatures[0].main.feels_like);
 
     temperatures.forEach(element => {
         if (element.dt_txt.includes('12:00:00')) {
             newTemperatures.push(element.main.temp);
+            feelTemperatures.push(element.main.feels_like);
         }
     });
 
-    updateChart(newTemperatures);
+    updateChart(newTemperatures, feelTemperatures);
     myChart.update();
 
     // températures
@@ -44,6 +49,8 @@ const fetchWeather = async function (town) {
         // variables
         const weatherContainer = document.querySelector('.weatherContainer');
         const townTemp = Math.trunc(townWeather.data.main.temp - 273.15);
+        const tempMin = Math.trunc(townWeather.data.main.temp_min - 273.15);
+        const tempMax = Math.trunc(townWeather.data.main.temp_max - 273.15);
         const townSky = townWeather.data.weather[0].description;
         let icon;
 
@@ -67,6 +74,8 @@ const fetchWeather = async function (town) {
 
         weatherContainer.innerHTML = '';
 
+        console.log(townWeather);
+
         weatherContainer.insertAdjacentHTML(
             'beforeend',
             `
@@ -74,6 +83,17 @@ const fetchWeather = async function (town) {
                 <p>Aujourd'hui à ${town}: ${townTemp}°C, ${townSky}. </p>
                 <img src="${icon}" id="weatherIcon" />
             </div>
+            <div class="weatherInfos">
+                <p>Température minimale : ${tempMin}°C</p>
+                <p>Température maximale : ${tempMax}°C</p>
+            </div>
+        
+            <div class="weatherInfos">
+                <p>Pression atmosphérique : ${townWeather.data.main.pressure} hPa</p>
+                <p>Précipitations : ${townWeather.data.main.humidity} %</p>
+                <p>Vent : ${townWeather.data.wind.speed} m/s</p>
+            </div>
+            
 
         `
         );
