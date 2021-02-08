@@ -17,8 +17,8 @@ const fetchWeather = async function (town) {
     const finalTown = townArray.join(' ');
 
     // url à laquelle on interpole la saisie utilisateur
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${finalTown}&appid=67173c519205d685b546a19f56219ebc&lang=fr`;
-    const forecastUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${finalTown}
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${finalTown}&appid=67173c519205d685b546a19f56219ebc&lang=fr`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${finalTown}
     &appid=67173c519205d685b546a19f56219ebc&lang=fr&units=metric`;
 
     // requête météo
