@@ -31,6 +31,8 @@ weatherInput.addEventListener('keyup', function (event) {
         : autoComplete(weatherInput.value);
 });
 
+fetchWeather('marseille');
+
 // AUTRES EXERCICES
 // A garder pour Claude
 
