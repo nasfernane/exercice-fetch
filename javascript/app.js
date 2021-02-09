@@ -1,14 +1,12 @@
 //-- modules --
 import fetchWeather from './fetchweather.mjs';
-// import fetchPicture from './fetchpicture.mjs';
 import autoComplete from './autocomplete.mjs';
-import mapbox from './mapbox.mjs';
-// import myChart from './myChart.mjs';
 
 //-- constantes --
 const weatherForm = document.querySelector('#weatherForm');
 const weatherInput = document.querySelector('#weatherInput');
 const autoCompleteContainer = document.querySelector('#weatherContainer__autoComplete');
+const autoCompleteBox = document.querySelector('.autoCompleteBox');
 
 //-- évènements --
 // fetch meteo et image de fond sur saisie utilisateur
@@ -17,20 +15,17 @@ weatherForm.addEventListener('submit', function (event) {
     // récupère la saisie utilisateur pour le fetch météo
     const town = document.querySelector('#weatherInput').value;
     // transforme cette saisie en slug pour le fetch d'image background
-    const townSlug = town.split(' ').join('-').toLowerCase();
     fetchWeather(town);
-    // fetchPicture(townSlug);
 });
 
 // autocomplete à chaque keyup sur l'input météo
 weatherInput.addEventListener('keyup', function (event) {
     event.preventDefault();
 
-    weatherInput.value === ''
-        ? (autoCompleteContainer.innerHTML = '')
-        : autoComplete(weatherInput.value);
+    weatherInput.value === '' ? (autoCompleteBox.innerHTML = '') : autoComplete(weatherInput.value);
 });
 
+// météo par défault sur la ville de Marseille
 fetchWeather('marseille');
 
 // AUTRES EXERCICES

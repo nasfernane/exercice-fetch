@@ -92,58 +92,20 @@ body::after {
 }
 
 #weatherInput::placeholder {
-    font-size: 3vh;
+    font-size: 2.5vh;
 }
 
 #weatherContainer__autoComplete {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    position: relative;
-    padding: 0;
-    margin: 0;
-}
-
-#weatherContainer__autoComplete p {
-    position: absolute;
-    height: 3vh;
-    width: calc(25rem + 2px);
-    background: white;
-    border: 1px solid black;
-    border-top: 0px;
-    display: inline;
     padding: 0rem 1rem;
+    width: 27rem;
+    padding: 0.1rem 1rem;
     margin: 0;
     font-size: 2.5vh;
-    box-sizing: border-box;
-}
-
-#weatherContainer__autoComplete p:nth-child(1) {
-    top: 0vh;
-    border-top: 1px solid black;
-}
-
-#weatherContainer__autoComplete p:nth-child(2) {
-    top: 3vh;
-}
-
-#weatherContainer__autoComplete p:nth-child(3) {
-    top: 6vh;
 }
 
 .weatherContainer {
     width: 80%;
     margin: 0 auto;
-}
-
-li {
-    list-style-type: none;
-}
-
-li img {
-    height: 20rem;
-    width: 15rem;
 }
 
 #weather {

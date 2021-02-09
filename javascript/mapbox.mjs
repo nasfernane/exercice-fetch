@@ -12,12 +12,12 @@ var mapbox = new mapboxgl.Map({
 
 weatherForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    // console.log(document.querySelector('#weatherContainer__autoComplete'));
+
     const latitude = document
-        .querySelector('#weatherContainer__autoComplete p')
+        .querySelector('#weatherContainer__autoComplete option')
         .getAttribute('data-lat');
     const longitude = document
-        .querySelector('#weatherContainer__autoComplete p')
+        .querySelector('#weatherContainer__autoComplete option')
         .getAttribute('data-lng');
 
     mapbox.flyTo({

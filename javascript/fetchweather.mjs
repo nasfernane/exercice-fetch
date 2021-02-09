@@ -28,8 +28,6 @@ const fetchWeather = async function (town) {
     const newTemperatures = [];
     const feelTemperatures = [];
 
-    console.log(forecastWeather);
-
     newTemperatures.push(temperatures[0].main.temp);
     feelTemperatures.push(temperatures[0].main.feels_like);
 
@@ -73,8 +71,6 @@ const fetchWeather = async function (town) {
         }
 
         weatherContainer.innerHTML = '';
-
-        console.log(townWeather);
 
         weatherContainer.insertAdjacentHTML(
             'beforeend',
