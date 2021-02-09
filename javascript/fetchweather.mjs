@@ -60,6 +60,9 @@ const fetchWeather = async function (town) {
                 icon = `./img/002-sunny.png`;
                 break;
             case 'nuageux':
+                icon = `./img/001-cloudy day.png`;
+                break;
+            case 'peu nuageux':
                 icon = `./img/005-cloudy.png`;
                 break;
             case 'partiellement nuageux':
@@ -67,6 +70,12 @@ const fetchWeather = async function (town) {
                 break;
             case 'ciel dégagé':
                 icon = `./img/002-sunny.png`;
+                break;
+            case 'brume':
+                icon = `./img/007-windy.png`;
+                break;
+            case 'légères chutes de neige':
+                icon = `./img/006-snowy.png`;
                 break;
         }
 

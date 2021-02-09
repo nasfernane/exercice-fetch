@@ -2,7 +2,32 @@
 import fetchWeather from './fetchweather.mjs';
 import mapbox from './mapbox.mjs';
 
-const autoCompleteBox = document.querySelector('.autoCompleteBox');
+const dataList = document.querySelector('#weatherContainer__autoComplete');
+const weatherInput = document.querySelector('#weatherInput');
+
+const inputUpdate = function () {
+    const town = weatherInput.value;
+    let latitude;
+    let longitude;
+
+    const dataOptions = Array.from(
+        document.querySelectorAll('#weatherContainer__autoComplete option')
+    );
+
+    for (let i = 0; i < dataOptions.length; i++) {
+        if (dataOptions[i].value === weatherInput.value) {
+            latitude = dataOptions[i].getAttribute('data-lat');
+            longitude = dataOptions[i].getAttribute('data-lng');
+        }
+    }
+
+    mapbox.flyTo({
+        center: [longitude, latitude],
+        essential: true,
+    });
+
+    fetchWeather(town);
+};
 
 // AUTOCOMPLETE
 const autoComplete = async function (input) {
@@ -16,81 +41,21 @@ const autoComplete = async function (input) {
         data: { query: input, type: 'city', hitsPerPage: '3' },
     });
 
-    // on vide la box pour effacer les recherches précédentes
-    autoCompleteBox.innerHTML = '';
-
-    // ajout du container
-    autoCompleteBox.insertAdjacentHTML(
-        'beforeend',
-        `
-        <select id="weatherContainer__autoComplete" size="3"></select>
-    `
-    );
-
-    const autoCompleteContainer = document.querySelector('#weatherContainer__autoComplete');
+    dataList.innerHTML = '';
 
     // pour chaque résultat, on ajoute une option
     for (let i = 0; i < res.data.hits.length; i++) {
-        autoCompleteContainer.insertAdjacentHTML(
+        dataList.insertAdjacentHTML(
             'beforeend',
             `
-        <option data-lat="${res.data.hits[i]._geoloc.lat}" data-lng="${res.data.hits[i]._geoloc.lng}" value="${res.data.hits[i].locale_names.default[0]}">${res.data.hits[i].locale_names.default[0]}</option>
+        <option value="${res.data.hits[i].locale_names.default[0]}" data-lat="${res.data.hits[i]._geoloc.lat}" data-lng="${res.data.hits[i]._geoloc.lng}"/>
         `
         );
     }
 
-    autoCompleteContainer.addEventListener('click', function (e) {
-        console.log('coucou');
-        const town = e.target.innerHTML;
-        const longitude = e.target.getAttribute('data-lng');
-        const latitude = e.target.getAttribute('data-lat');
-        fetchWeather(town);
-
-        // vide l'input utilisateur et le conteneur autocomplete
-        weatherInput.value = `${e.target.innerHTML}`;
-        autoCompleteContainer.innerHTML = '';
-
-        mapbox.flyTo({
-            center: [longitude, latitude],
-            essential: true,
-        });
-
-        autoCompleteContainer.style.display = 'none';
-    });
-
-    autoCompleteContainer.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-            const town = autoCompleteContainer.value;
-            console.log(town);
-            let latitude;
-            let longitude;
-
-            // récupère les options du select puis boucle dessus pour récupérer les coordonnées correspondantes
-            const options = autoCompleteContainer.querySelectorAll('option');
-
-            for (let i = 0; i < options.length; i++) {
-                if (options[i].value == autoCompleteContainer.value) {
-                    latitude = options[i].getAttribute('data-lat');
-                    longitude = options[i].getAttribute('data-lng');
-                }
-            }
-
-            console.log(latitude, longitude);
-
-            // vide l'input utilisateur et le conteneur autocomplete
-            weatherInput.value = autoCompleteContainer.value;
-            autoCompleteContainer.innerHTML = '';
-
-            fetchWeather(town);
-
-            mapbox.flyTo({
-                center: [longitude, latitude],
-                essential: true,
-            });
-
-            autoCompleteContainer.style.display = 'none';
-        }
-    });
+    // supprime les anciens évènement pour éviter le cumul
+    weatherInput.removeEventListener('change', inputUpdate, false);
+    weatherInput.addEventListener('change', inputUpdate, false);
 };
 
 export default autoComplete;

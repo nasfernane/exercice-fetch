@@ -6,7 +6,6 @@ import autoComplete from './autocomplete.mjs';
 const weatherForm = document.querySelector('#weatherForm');
 const weatherInput = document.querySelector('#weatherInput');
 const autoCompleteContainer = document.querySelector('#weatherContainer__autoComplete');
-const autoCompleteBox = document.querySelector('.autoCompleteBox');
 
 //-- évènements --
 // fetch meteo et image de fond sur saisie utilisateur
@@ -22,7 +21,9 @@ weatherForm.addEventListener('submit', function (event) {
 weatherInput.addEventListener('keyup', function (event) {
     event.preventDefault();
 
-    weatherInput.value === '' ? (autoCompleteBox.innerHTML = '') : autoComplete(weatherInput.value);
+    weatherInput.value === ''
+        ? (autoCompleteContainer.innerHTML = '')
+        : autoComplete(weatherInput.value);
 });
 
 // météo par défault sur la ville de Marseille

@@ -95,13 +95,13 @@ body::after {
     font-size: 2.5vh;
 }
 
-#weatherContainer__autoComplete {
+/* #weatherContainer__autoComplete {
     padding: 0rem 1rem;
     width: 27rem;
     padding: 0.1rem 1rem;
     margin: 0;
     font-size: 2.5vh;
-}
+} */
 
 .weatherContainer {
     width: 80%;
