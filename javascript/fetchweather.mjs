@@ -42,7 +42,6 @@ const fetchWeather = async function (town) {
     myChart.update();
 
     // températures
-
     if (townWeather) {
         // variables
         const weatherContainer = document.querySelector('.weatherContainer');
