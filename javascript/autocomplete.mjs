@@ -2,7 +2,7 @@
 import fetchWeather from './fetchweather.mjs';
 import mapbox from './mapbox.mjs';
 
-// constantes, récupération des éléments
+//-- constantes, récupération des éléments --
 const autoCompBox = document.querySelector('#autoCompleteBox');
 const weatherInput = document.querySelector('#weatherInput');
 
@@ -20,18 +20,19 @@ const autoComplete = async function (input) {
         data: { query: input, type: 'city', hitsPerPage: '3' },
     });
 
-    // vide précédents résultats
+    // vide résultats précédents
     autoCompBox.innerHTML = '';
 
+    // insertion du select
     autoCompBox.insertAdjacentHTML(
         'beforeend',
         `<select id="weatherContainer__autoComplete" size="3"></select>`
     );
 
-    // création du container
+    // récupération du select
     const autoCompleteContainer = document.querySelector('#weatherContainer__autoComplete');
 
-    // pour chaque résultat, on ajoute une option
+    // ajout des options sur select
     for (let i = 0; i < res.data.hits.length; i++) {
         autoCompleteContainer.insertAdjacentHTML(
             'beforeend',
@@ -83,7 +84,7 @@ const autoComplete = async function (input) {
         });
     });
 
-    // event clavier sur le select
+    // event clavier sur le select (navigation clavier)
     autoCompleteContainer.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
             weatherInput.value = autoCompleteContainer.value;

@@ -1,5 +1,7 @@
+// récupération du canvas, attribution d'un contexte 2D
 var ctx = document.getElementById('meteoChart').getContext('2d');
 
+// création du graphique avec modèle de base
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -49,6 +51,7 @@ var myChart = new Chart(ctx, {
     },
 });
 
+// fonction pour mettre à jour graphique du forecast
 updateChart = function (newTemps, feelTemps) {
     myChart.data = {
         labels: ['0', '1', '2', '3', '4', '5'],

@@ -22,12 +22,15 @@ const fetchWeather = async function (town) {
     const townWeather = await axios.get(url);
     const forecastWeather = await axios.get(forecastUrl);
     const temperatures = forecastWeather.data.list;
+    // création de tableaux pour push seulement les données de l'heure qui nous intéresse
     const newTemperatures = [];
     const feelTemperatures = [];
 
+    // ajout en première valeur, la première donnée pour moment actuel
     newTemperatures.push(temperatures[0].main.temp);
     feelTemperatures.push(temperatures[0].main.feels_like);
 
+    // ajoute les valeurs des cinq prochains jours à 12h00
     temperatures.forEach(element => {
         if (element.dt_txt.includes('12:00:00')) {
             newTemperatures.push(element.main.temp);
@@ -35,10 +38,11 @@ const fetchWeather = async function (town) {
         }
     });
 
+    // mise à jour du graphique
     updateChart(newTemperatures, feelTemperatures);
     myChart.update();
 
-    // températures
+    // insertion encart météo
     if (townWeather) {
         // variables
         const weatherContainer = document.querySelector('.weatherContainer');
